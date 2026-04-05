@@ -5,10 +5,20 @@ const ApiContext = createContext(null);
 
 export function ApiProvider({ children }) {
   const [apiKey, setApiKeyState] = useState(() => localStorage.getItem('fraudnet_api_key') || '');
+  // Removed localStorage so it defaults to false on every load/refresh
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [tigerStatus, setTigerStatus] = useState('checking');
   const [reportStatus, setReportStatus] = useState('checking');
   const [transactionHistory, setTransactionHistory] = useState([]);
-  const [reportTarget, setReportTarget] = useState(null); // specific account for SAR
+  const [reportTarget, setReportTarget] = useState(null);
+
+  const login = useCallback(() => {
+    setIsAuthenticated(true);
+  }, []);
+
+  const logout = useCallback(() => {
+    setIsAuthenticated(false);
+  }, []);
 
   const setApiKey = useCallback((key) => {
     localStorage.setItem('fraudnet_api_key', key);
@@ -40,6 +50,9 @@ export function ApiProvider({ children }) {
     <ApiContext.Provider value={{
       apiKey,
       setApiKey,
+      isAuthenticated,
+      login,
+      logout,
       tigerStatus,
       reportStatus,
       checkStatuses,
