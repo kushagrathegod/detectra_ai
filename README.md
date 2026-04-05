@@ -39,16 +39,6 @@ Open [http://localhost:5173](http://localhost:5173)
 
 The Report AI backend is deployed at: `https://report-ai-6gsh.onrender.com`
 
-To run locally:
-
-```bash
-cd backend
-pip install -r requirements.txt
-# Create .env with your GROQ_API_KEY
-cp .env.example .env
-uvicorn app:app --reload
-```
-
 ## API Keys
 
 1. **TigerGraph API Key**: Enter in Settings page → saved to `localStorage`
