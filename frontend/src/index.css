@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Colors - The Sentient Nexus Palette */
+  --bg-deep: #0b0e14;
+  --surface: #10131a;
+  --surface-low: #191c22;
+  --surface-container: #1d2026;
+  --surface-high: #272a31;
+  --surface-highest: #32353c;
+  
+  --primary: #adc6ff;
+  --primary-container: #4b8eff;
+  --secondary: #53e16f;
+  --secondary-container: #05b046;
+  --tertiary: #c6c6cb;
+  
+  /* Semantic Status Tokens (Action-Driven) */
+  --status-critical: #ffb4ab;
+  --status-warning: #ffdc48;
+  --status-success: #83e16f;
+  --status-info: #adc6ff;
+  
+  --error: var(--status-critical);
+  
+  --on-surface: #e1e2eb;
+  --on-surface-variant: #c1c6d7;
+  --outline: #8b90a0;
+  --outline-variant: rgba(65, 71, 85, 0.15); /* Ghost Border Rule */
+  
+  /* Typography */
+ --font-display: 'Satoshi', 'Inter', sans-serif;
+--font-body: 'Inter', sans-serif;
+  /* --font-serif: 'Cormorant Garamond', serif; */
+  
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  
+  /* Grounded Digital Layering - Action Pivot */
+  --inner-glow-subtle: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-grounded: 0 4px 12px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --glass-bg-solid: rgba(22, 26, 34, 0.9);
+  --glass-blur-minimal: blur(12px);
+  
+  /* Numeric Precision */
+  --font-numeric: tabular-nums;
+  
+  /* Mesh Gradient (Reduced intensity) */
+  --mesh-1: rgba(173, 198, 255, 0.02);
+  --mesh-2: rgba(83, 225, 111, 0.01);
+  --mesh-3: rgba(255, 180, 171, 0.01);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-deep);
+  background-image: 
+    radial-gradient(at 0% 0%, var(--mesh-1) 0, transparent 50%),
+    radial-gradient(at 100% 0%, var(--mesh-2) 0, transparent 50%),
+    radial-gradient(at 50% 100%, var(--mesh-3) 0, transparent 50%);
+  color: var(--on-surface);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+h1, h2, h3, .display-txt {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Action-Oriented Surfaces */
+.glass {
+  background: var(--glass-bg-solid);
+  backdrop-filter: var(--glass-blur-minimal);
+  -webkit-backdrop-filter: var(--glass-blur-minimal);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-grounded);
+}
+
+.glass-premium {
+  background: var(--surface-low);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: var(--shadow-grounded);
+  position: relative;
+}
+
+.tabular {
+  font-variant-numeric: var(--font-numeric);
+}
+
+.hologram-effect {
+  background: var(--hologram-gradient);
+  position: relative;
+  overflow: hidden;
+}
+
+.hologram-effect::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 45%, rgba(173, 198, 255, 0.1) 50%, transparent 55%);
+  animation: hologram-shimmer 4s infinite linear;
+}
+
+@keyframes hologram-shimmer {
+  0% { transform: translateX(-30%) translateY(-30%) rotate(0deg); }
+  100% { transform: translateX(30%) translateY(30%) rotate(0deg); }
+}
+
+@keyframes pulse-warning {
+  0% { box-shadow: 0 0 0 0 rgba(255, 180, 171, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(255, 180, 171, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 180, 171, 0); }
+}
+
+.warning-pulse {
+  animation: pulse-warning 2s infinite;
+}
+
+/* Signature Gradient Button */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-container));
+  color: #002e69;
+  border: none;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  font-family: var(--font-display);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 0 15px rgba(173, 198, 255, 0.3);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-high);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--outline);
+}
